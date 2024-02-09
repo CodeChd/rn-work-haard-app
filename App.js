@@ -1,4 +1,3 @@
-import { StatusBar } from "expo-status-bar";
 import {
   StyleSheet,
   Text,
@@ -16,7 +15,6 @@ import { Fontisto } from "@expo/vector-icons";
 export default function App() {
   const [working, setWorking] = useState(true);
   const [text, setText] = useState("");
-  const [loading, setLoading] = useState(true);
   const [todos, setTodos] = useState({});
 
   const travel = () => setWorking(false);
@@ -42,7 +40,7 @@ export default function App() {
 
   const TODOS_DATA = async () => {
     const res = await AsyncStorage.getItem("TODOS");
-    const parsedData = JSON.parse(res);
+    const parsedData = JSON.parse(res) || [];
 
     setTodos(parsedData);
   };
@@ -107,7 +105,7 @@ export default function App() {
                 <Fontisto name="trash" size={20} color="#a8a29e" />
               </TouchableOpacity>
             </View>
-          ) : null
+          ) : <Text>Hello</Text>
         )}
       </ScrollView>
     </View>
